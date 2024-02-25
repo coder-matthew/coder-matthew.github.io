@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <!-- ... Your HTML and CSS -->
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+
+      // Fetch your API_KEY
+      const API_KEY = "AIzaSyAAIpkNypPp1j1fy8wQXtnSNdLGOPA-5_Q";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        async function run() {
+          // For text-only input, use the gemini-pro model
+          const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+          const prompt = "Napisz przykładowy i zaawansowany kod html css i js (html, css i js ma być w jednym pliku)"
+
+          const result = await model.generateContent(prompt);
+          const response = await result.response;
+          const text = response.text();
+          document.write(text);
+        }
+
+        run();
+    </script>
+  </body>
+</html>
